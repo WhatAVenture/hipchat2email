@@ -1,0 +1,34 @@
+{
+  "name": "wav-hipchat-trello-connect",
+  "displayName": "Trello connect",
+  "description": "Adds tasks to Trello boards",
+  "version": "0.0.1",
+  "author": {
+    "name": "WhatAVenture",
+    "url": "http://whataventure.com"
+  },
+  "license": "Apache 2.0",
+  "engines": {
+    "node": "~0.12.3"
+  },
+  "scripts": {
+    "web": "node --harmony web.js",
+    "web-dev": "nodemon --harmony -e js,css,hbs,html web.js",
+    "tunnel": "ngrok 3000"
+  },
+  "development": {
+    "port": 3000,
+    "localBaseUrl": "https://[your-domain]:3000"
+  },
+  "production": {
+    "localBaseUrl": "https://[your-domain]:3000",
+    "redisEnv": "REDISCLOUD_URL",
+    "port": "$PORT"
+  },
+  "dependencies": {
+    "ac-koa": "^0.2.6",
+    "ac-koa-hipchat": "^0.2.14",
+    "emailjs": "^1.0.1"
+  }
+}
+

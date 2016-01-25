@@ -1,0 +1,24 @@
+{
+    "email": {
+        "user":        "", 
+        "password":    "", 
+        "host":        "", 
+        "tls-ciphers": "SSLv3"
+    },
+    "trello": {
+        "mailPrefix":  ".inbox@company.com"
+    },
+    "texts": {
+        "hello":         "Dark greetings, [name]! Type \\help for information about how to add tasks to your Trello board.",
+        "help":          "Add a task to your Trello board using:\n1) a custom text: \"[task description] #task\"\n2) the last message: \"#task\"\n3) x last messages: \"#task x\n\nNote:\n-) Mention a user (@[user]) to send the task to this user's Trello board.\n-) The e-mail-to-board address needs to be: [first name].inbox@company.com\n-) File uploads without message will not be processed.",
+        "noLastMessage": "No previous message found, please \n1) wait for messages or \n2) type \"[task description] #task\"\nto add a task to your board!\nType \\help for more information.",
+        "error":         "I failed to add this task, sorry! Please notify your administrator and add this task manually.",
+        "success":       "Success: \"[text]\" ([email])",
+        "sending":       "Sending task to [name]'s Trello board...",
+        "taskText":      "Sent from hipchat (@[addedBy]).",
+        "attachmentText":  "Attachment:\n[text]"
+    },
+    "numCharactersForTaskPreview": 30
+}
+
+

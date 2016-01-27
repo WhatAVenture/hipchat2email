@@ -9,7 +9,6 @@ var emailServer = connectToEmailServer();
 var lastMessages = [];
 var addon = createAddon();
 
-
 addon.webhook('room_message', /^[\s\S]*$/, function *() {
     var msg = this.message["message"];
 
@@ -22,7 +21,7 @@ addon.webhook('room_message', /^[\s\S]*$/, function *() {
     } else if (/^\/hello$/.test(msg)) {
         yield this.roomClient.sendNotification(config["texts"]["hello"].replace("[name]", this.sender.name));
     } else if (/^[\s\S]*#task[\s\S]*$/.test(msg)) {
-        var userMentioned = IsUserMentioned(this.message);
+        var userMentioned = isUserMentioned(this.message);
         if (userMentioned) msg = msg.replace("@" + this.message.mentions[0].mention_name, "").trim();
         var useLastMessages = /^#task$/.test(msg);
         var lastMessagesSpecified = /^#task \d+$/.test(msg);
@@ -58,15 +57,14 @@ function createApp() {
 }
 
 function createAddon() {
-    var addon = app.addon()
+    return app.addon()
         .hipchat()
         .allowRoom(true)
         .allowGlobal(true)
         .scopes('send_notification');
-    return addon;
 }
 
-function IsUserMentioned(message) {
+function isUserMentioned(message) {
     return message.mentions[0] != null &&
         message.mentions[0].mention_name != "all" &&
         message.mentions[0].mention_name != "here" &&
@@ -103,13 +101,13 @@ function sendMail(userMentioned, text, context, message, sender) {
 }
 
 function buildSslOptions() {
-    fs = require('fs');
-    ca = [];
+    var fs = require('fs');
+    var ca = [];
     for (var i = 0; i < sslCa.length; ++i) {
         ca.push(fs.readFileSync(sslCa[i]));
     }
 
-    return sslOptions = {
+    return {
       key: fs.readFileSync(sslKey),
       cert: fs.readFileSync(sslCert),
       ca: ca,
